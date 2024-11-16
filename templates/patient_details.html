@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تفاصيل المريض</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            direction: rtl;
+        }
+        .container {
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">تفاصيل المريض</h1>
+        <div class="card mt-4">
+            <div class="card-body">
+                <h5 class="card-title">اسم المريض: {{ patient.name }}</h5>
+                <p class="card-text"><strong>العمر:</strong> {{ patient.age }} سنة</p>
+                <p class="card-text"><strong>العنوان:</strong> {{ patient.address }}</p>
+                <p class="card-text"><strong>النوع:</strong> {{ patient.gender }}</p>
+                <p class="card-text"><strong>الحالة الاجتماعية:</strong> {{ patient.marital_status }}</p>
+                <p class="card-text"><strong>الأمراض المزمنة:</strong> {{ patient.chronic_diseases }}</p>
+                <p class="card-text"><strong>التشخيص:</strong> {{ patient.diagnosis }}</p>
+                <p class="card-text"><strong>الأدوية السابقة:</strong> {{ patient.previous_medications }}</p>
+                <p class="card-text"><strong>الإشاعات السابقة:</strong> {{ patient.previous_radiology }}</p>
+                <p class="card-text"><strong>التحاليل السابقة:</strong> {{ patient.previous_analyses }}</p>
+            </div>
+        </div>
+        <div class="mt-3">
+            <a href="/patient_list" class="btn btn-secondary">العودة إلى قائمة المرضى</a>
+            <a href="/" class="btn btn-secondary">العودة إلى الداشبورد</a>
+        </div>
+    </div>
+</body>
+</html>

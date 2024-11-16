@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عرض المرضى</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <style>
+        /* ضبط اتجاه النصوص لعناصر Select2 والتنسيق */
+        .select2-container--default .select2-selection--single {
+            direction: rtl;
+            text-align: right;
+        }
+
+        body {
+            direction: rtl;
+            text-align: right;
+            background-color: #f8f9fa; /* لون خلفية خفيف */
+        }
+
+        .container {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-control {
+            border-radius: 0.5rem;
+        }
+
+        .btn {
+            border-radius: 0.5rem;
+        }
+
+        h1 {
+            color: #343a40;
+        }
+
+        .list-group-item {
+            border: none;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .list-group-item:last-child {
+            border-bottom: none;
+        }
+
+        .btn-info {
+            background-color: #17a2b8;
+            border-color: #17a2b8;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            border-color: #6c757d;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4 text-center">عرض المرضى</h1>
+        
+        <!-- نموذج البحث -->
+        <form method="get" action="{{ url_for('view_patients') }}" class="form-inline justify-content-center mb-4">
+            <input 
+                type="text" 
+                name="search" 
+                class="form-control mr-2" 
+                placeholder="ابحث عن مريض" 
+                value="{{ request.args.get('search', '') }}">
+            <button type="submit" class="btn btn-primary">بحث</button>
+        </form>
+
+        <!-- قائمة المرضى -->
+        <ul class="list-group">
+            {% for patient in patients %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <span>{{ patient.name }}</span>
+                    <!-- رابط لصفحة التقارير الخاصة بكل مريض -->
+                    <a href="{{ url_for('reports', patient_id=patient.id) }}" class="btn btn-info btn-sm">عرض التقارير</a>
+                </li>
+            {% else %}
+                <li class="list-group-item text-center">لا توجد نتائج للبحث</li>
+            {% endfor %}
+        </ul>
+
+        <div class="text-center mt-4">
+            <a href="{{ url_for('index') }}" class="btn btn-secondary">العودة إلى الصفحة الرئيسية</a>
+        </div>
+    </div>
+
+    <!-- تضمين ملفات Bootstrap JS (اختياري) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>
+    
